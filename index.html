@@ -25,12 +25,18 @@
         showPercentages: true,
         firstColHeader: 'Event'
       });
+      
+      MP.api.segment("Purchase", null, dateRange).done(function (results) {
+        MP.api.segment("Session", null, dateRange).done(function (sessions) {
+          results / session;
+        });  
+      });
 
       var runQuery = function() {
         var eventName = eventSelect.MPEventSelect('value'),
             propName  = propSelect.MPPropertySelect('value'),
             dateRange = dateSelect.MPDatepicker('value');
-
+  
         if (eventName) {
           MP.api.segment(eventName, propName, dateRange).done(function(results) {
             eventGraph.MPChart('setData', results);
